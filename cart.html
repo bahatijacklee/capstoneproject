@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baha book  stores</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--added a cdn link by searching font awesome4 cdn and getting this link from https://www.bootstrapcdn.com/fontawesome/ this url*/-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  
+</head>
+<body>
+    <div id="head">
+    <p>Logo</p>
+    <header>BBS BAHA BOOK STORES</header>
+    <div>
+        <ul id="navbar">
+           <li><a  href="index.html">Home</a></li>
+           <li><a  href="account.html">Account</a></li>
+           <li><a class="active" href="cart.html">Cart</a></li>
+
+        </ul>
+    
+</div> <table id="cart-table">
+  <tr>
+      <th>Product</th>
+      <th>Price</th>
+  </tr>
+</table>
+
+<div id="site">
+	<header id="masthead">
+	</header>
+	<div id="content">
+		<h1>Checkout</h1>
+			<table id="checkout-cart" class="shopping-cart">
+			  <thead>
+				<tr>
+					<th scope="col">Item</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+				</tr>
+			  </thead>
+			  <tbody>
+			  
+			  </tbody>
+			</table>
+		 <div id="pricing">
+			
+			<p id="shipping">
+				<strong>Shipping</strong>: <span id="sshipping"></span>
+			</p>
+			
+			<p id="sub-total">
+				<strong>Total</strong>: <span id="stotal"></span>
+			</p>
+		 </div>
+		 
+		 <form action="order.html" id="checkout-order-form">
+		 	<h2>Your Details</h2>
+		 	
+		 	<fieldset id="fieldset-billing">
+		 		<legend>Billing</legend>
+		 		<div>
+		 			<label for="name">Name</label>
+		 			<input type="text" name="name" id="name" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="email">Email</label>
+		 			<input type="text" name="email" id="email" data-type="string" data-message="Not a valid email address" />
+		 		</div>
+		 		<div>
+		 			<label for="city">City</label>
+		 			<input type="text" name="city" id="city" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="address">Address</label>
+		 			<input type="text" name="address" id="address" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="zip">ZIP Code</label>
+		 			<input type="text" name="zip" id="zip" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="country">Country</label>
+		 			<select name="country" id="country" data-type="string" data-message="This field cannot be empty">
+		 				<option value="">Select</option>
+		 				<option value="KE">Kenya</option>
+		 				<option value="UG">Uganda</option>
+						 <option value="RW">Rwanda</option>
+		 			</select>
+		 		</div>
+		 	</fieldset>
+		 	
+		 	<div id="shipping-same">Same as Billing <input type="checkbox" id="same-as-billing" value=""/></div>
+		 	
+		 	<fieldset id="fieldset-shipping">
+		 		
+		 		<legend>Shipping</legend>
+		 		
+		 		<div>
+		 			<label for="sname">Name</label>
+		 			<input type="text" name="sname" id="sname" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="semail">Email</label>
+		 			<input type="text" name="semail" id="semail" data-type="expression" data-message="Not a valid email address" />
+		 		</div>
+		 		<div>
+		 			<label for="scity">City</label>
+		 			<input type="text" name="scity" id="scity" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="saddress">Address</label>
+		 			<input type="text" name="saddress" id="saddress" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="szip">ZIP Code</label>
+		 			<input type="text" name="szip" id="szip" data-type="string" data-message="This field cannot be empty" />
+		 		</div>
+		 		<div>
+		 			<label for="scountry">Country</label>
+		 			<select name="scountry" id="scountry" data-type="string" data-message="This field cannot be empty">
+		 				<option value="">Select</option>
+		 				<option value="KE">Kenya</option>
+		 				<option value="UG">Uganda</option>
+						 <option value="TZ">Tanzania</option>
+		 			</select>
+		 		</div>
+		 	</fieldset>
+		 	
+		 	<p><input type="submit" id="submit-order" value="Submit" class="btn" /></p>
+		 
+		 </form>
+	</div>
+	
+	
+
+</div>
+            
+     </section>
+    
+     <footer class="section-p1">
+    <div class="col">
+        <p> <strong>BAHA BOOK STORES</strong></p>
+        <h4>Contact</h4>
+        <p><strong>Address:</strong> 234 Thika Road, RUiru</p>
+        <p><strong>Phone:</strong> 0700673459</p>
+        <p><strong>Hours:</strong> 08:00 - 16:00, Mon - Sat</p>
+        <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+                 <i class='bx bxl-facebook'></i>
+                 <i class='bx bxl-twitter'></i>
+                 <i class='bx bxl-instagram-alt' ></i>
+                 <i class='bx bxl-linkedin' ></i>
+                 <i class='bx bxl-pinterest' ></i>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Delivery Information</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Condition</a>
+        <a href="#">Contact Us</a>
+    </div>
+    <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Track My Order</a>
+        <a href="#">Help</a>
+    </div>
+    <div class="col">
+        <h4>Secured Payment Gateways </h4>
+        <h4>MPESA <br> VISA <br>
+          
+    
+    </div>
+    <div class="copyright">
+    <h4>® 2023, Baha etc - HTML CSS Ecommerce web</h4>
+    </div>
+     </footer>
+     <script>
+      // Use JavaScript to fetch and populate cart items from products.html
+      document.addEventListener("DOMContentLoaded", function () {
+          // Use fetch or XMLHttpRequest to retrieve product data from "products.html"
+          // For simplicity, I'll provide an example using fetch.
+          fetch("index.html")
+              .then(response => response.text())
+              .then(data => {
+                  // Parse the product data from the response
+                  const parser = new DOMParser();
+                  const productDocument = parser.parseFromString(data, "text/html");
+
+                  // Select and extract product information from the product page
+                  const products = productDocument.querySelectorAll(".product"); // Adjust the selector accordingly
+
+                  // Iterate through the products and add them to the cart
+                  const cartItems = document.getElementById("cart-items");
+                  products.forEach(product => {
+                      // Extract product details (name, price, etc.)
+                      const productName = product.querySelector(".product-name").textContent; // Adjust the selector
+                      const productPrice = product.querySelector(".product-price").textContent; // Adjust the selector
+
+                      // Create a new row in the cart table
+                      const cartRow = document.createElement("tr");
+                      cartRow.innerHTML = `
+                          <td>${productName}</td>
+                          <td>1</td>
+                          <td>${productPrice}</td>
+                      `;
+
+                      // Add the row to the cart
+                      cartItems.appendChild(cartRow);
+                  });
+              })
+              .catch(error => {
+                  console.error("Error fetching product data: ", error);
+              });
+      });
+  </script>
+     <script src="java.js"></script>
+</body>
+</html>

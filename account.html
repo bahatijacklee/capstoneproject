@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baha book  stores</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+  href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
+
+</head>
+<body>
+    
+    <section id="header">
+
+    <div>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="Account.html">Account</a></li>
+       <li><a href="cart.html">Cart</a></li>
+          
+        </ul>
+</section>
+
+<section id="page-header" >
+  <div class="about-header"> 
+<h2>#create an Account</h2>
+
+</div>
+</section>
+<section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>firebasehtml</title>
+    <style>
+        body { text-align: center; }
+        #enterDetails, #findDetails { float: left; width: 100%; background-color: darkslategray; color: floralwhite; padding: 20px; }
+        input { width: 100%; padding: 5px; margin: 5px; }
+        button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <div id="enterDetails">
+        <h1>Enter Details</h1>
+        <button id="insert">INSERT</button>
+        <button id="update">UPDATE</button>
+        <button id="remove">REMOVE</button>
+    </div>
+
+    <div id="findDetails">
+        <h1>Find by Email</h1>
+        <h4>Email</h4>
+        <button id="find">FIND</button>
+
+        <h3 id="findName" type="text"></h3>
+        <h3 id="findPassword" type="text"></h3> <br><br>
+    </div>
+
+    <button id="signInButton"> Create Account / Sign In</button>
+    <button id="signOutButton">Sign Out</button>
+
+    
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+        import {getAuth,GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCIz4Kvxv2NcwfnDCU8UIPdqBzazaxUqjw",
+          authDomain: "erics-fb75e.firebaseapp.com",
+          projectId: "erics-fb75e",
+          storageBucket: "erics-fb75e.appspot.com",
+          messagingSenderId: "376440553342",
+          appId: "1:376440553342:web:51093f5e7a7176d96f7d2f",
+          measurementId: "G-8D7KQYHRPL"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        import { FacebookAuthProvider, TwitterAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+        const facebookProvider = new FacebookAuthProvider();
+        const twitterProvider = new TwitterAuthProvider();
+        const provider = new GoogleAuthProvider()
+        const signInButton =document.getElementById("signInButton");
+        const signOutButton =document.getElementById("signOutButton");
+        const message =document.getElementById("message");
+        const userName = document.getElementById("userName");
+
+        signOutButton.style.display = "none";
+        message.style.display = "none";
+        const userSignIn = async() => {
+            signInWithPopup(auth, provider)
+            .then((result) =>{
+                const user = result.user
+                console.log(user);
+            }).catch((error) =>{
+                const errorCode = error.code;
+                const errorMessage = error.message
+            } )
+        }
+           
+        const usersignOut = async() =>{
+        signOut(auth).then(()=>{
+            alert("You have signed out successfully!");
+        }).catch((error) =>{})
+    }
+onAuthStateChanged(auth, (user) => {
+    if(user) {
+        signOutButton.style.display = "block";
+        message.style.display = "block";
+        userName.innerHTML = user.display
+
+    } else{
+        signOutButton.style.display = "none";
+        message.style.display = "none";
+    }
+})
+
+signInButton.addEventListener('click', userSignIn);
+signOutButton.addEventListener('click', usersignOut);
+        
+  
+
+        
+        import{getDatabase, set, get, update, remove, ref, child}
+        from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"
+         const db = getDatabase();
+
+        var enterEmail = document.querySelector("#enterEmail");
+        var enterName = document.querySelector("#enterName");
+        var enterPassword = document.querySelector("#enterPassword");
+        var findEmail = document.querySelector("#findEmail");
+        var findName = document.querySelector("#findName");
+        var findPassword = document.querySelector("#findPassword");
+
+        var insertBtn = document.querySelector("#insert");
+        var updateBtn = document.querySelector("#update");
+        var removeBtn = document.querySelector("#remove");
+        var findBtn = document.querySelector("#find");
+
+        function InsertData() {
+            set(ref(db, "Users/" + enterEmail.value), {
+                Name: enterName.value,
+                Email: enterEmail.value,
+                Password: enterPassword.value
+            })
+            .then(()=>{
+                alert("Data added successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function FindData() {
+            const dbref = ref(db);
+
+            get(child(dbref, "Users/" + findEmail.value))
+            .then((snapshot)=>{
+                if (snapshot.exists()) {
+                    findName.innerHTML = "Name: " + snapshot.val().Name;
+                    findPassword.innerHTML = "Password: " + snapshot.val().Password;
+                } else {
+                    alert("No data found");
+                }
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function UpdateData() {
+            update(ref(db, "Users/" + enterEmail.value), {
+                Name: enterName.value,
+                Password: enterPassword.value
+            })
+            .then(()=>{
+                alert("Data updated successfully!");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        function RemoveData() {
+            remove(ref(db, "Users/" + enterEmail.value))
+            .then(()=>{
+                alert("Data removed successfully");
+            })
+            .catch((error)=>{
+                alert(error);
+            });
+        }
+
+        insertBtn.addEventListener('click', InsertData);
+        updateBtn.addEventListener('click', UpdateData);
+        removeBtn.addEventListener('click', RemoveData);
+        findBtn.addEventListener('click', FindData);
+        
+    </script>
+</body>
+</html>
+
+    
+ </section>
+
+ <footer class="section-p1">
+<div class="col">
+    <p> <strong>GREENLY FRUITS</strong></p>
+    <h4>Contact</h4>
+    <p><strong>Address:</strong> 100 Thika Road, RUiru</p>
+    <p><strong>Phone:</strong> 0790794839</p>
+    <p><strong>Hours:</strong> 08:00 - 18:00, Mon - Sat</p>
+    <div class="follow">
+        <h4>Follow us</h4>
+        <div class="icon">
+             <i class='bx bxl-facebook'></i>
+             <i class='bx bxl-twitter'></i>
+             <i class='bx bxl-instagram-alt' ></i>
+             <i class='bx bxl-linkedin' ></i>
+             <i class='bx bxl-pinterest' ></i>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <h4>About</h4>
+    <a href="#">About us</a>
+    <a href="#">Delivery Information</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Condition</a>
+    <a href="#">Contact Us</a>
+</div>
+<div class="col">
+    <h4>My Account</h4>
+    <a href="#">Sign In</a>
+    <a href="#">View Cart</a>
+    <a href="#">My Wishlist</a>
+    <a href="#">Track My Order</a>
+    <a href="#">Help</a>
+</div>
+<div class="col">
+    <h4>Secured Payment Gateways </h4>
+    <h4>MPESA <br> VISA <br>
+        BANK PAYMENT </h4>
+
+</div>
+<div class="copyright">
+<h4>® 2023, Eric etc - HTML CSS Ecommerce web</h4>
+</div>
+
+ </footer>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+
+<script src="java.js"></script>
+</html>
